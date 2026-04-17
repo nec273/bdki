@@ -32,27 +32,27 @@
             justify-content: flex-end; 
             align-items: center;        
             
-            /* [기본: 안드로이드] 기존처럼 여백을 넉넉히 줌 */
-            padding-bottom: 150px; 
+            /* [안드로이드] 하단 틀 높이 조절 */
+            padding-bottom: 120px; 
         }
 
-        /* [iOS 전용 설정] 버튼을 더 아래로 내려서 로고와 겹침 방지 */
+        /* [iOS] 전체적인 버튼 틀을 더 아래로 내려서 로고를 살림 */
         body.ios .app-container {
-            padding-bottom: 80px; /* 150px에서 60px로 줄여서 버튼을 하단으로 내림 */
-            padding-bottom: calc(40px + env(safe-area-inset-bottom)); /* 홈 바 영역 대응 */
+            padding-bottom: calc(30px + env(safe-area-inset-bottom)); 
         }
 
         .button-group {
             display: flex;
             flex-direction: column; 
-            gap: 25px; 
+            gap: 15px; /* 버튼 사이 간격(틀)을 더 좁게 수정 */
             align-items: center;
             width: 100%;
         }
 
+        /* [핵심 수정] 버튼의 전체적인 폭(틀)을 200px로 슬림하게 조정 */
         .logo-link {
             display: block;
-            width: 200px; 
+            width: 200px; /* 기존 240px에서 더 줄여서 컴팩트하게 만듦 */
             height: auto;
             transition: transform 0.1s;
         }
@@ -61,12 +61,12 @@
             width: 100%;
             height: auto;
             display: block;
-            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.5));
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.4));
         }
 
         .logo-link:active {
             opacity: 0.8;
-            transform: scale(0.92);
+            transform: scale(0.95);
         }
     </style>
 </head>
@@ -85,7 +85,6 @@
     </div>
 
     <script>
-        // 접속 기기가 iOS인지 감지해서 body에 클래스를 붙여줍니다.
         document.addEventListener("DOMContentLoaded", function() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
