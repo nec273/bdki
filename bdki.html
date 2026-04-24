@@ -22,7 +22,7 @@
             position: relative;
             width: 100%;
             height: 100vh;
-            background-image: url('https://bdki2020.cafe24.com/app/260416/approot.png');
+            background-image: url('https://bdki2020.cafe24.com/app/260424/main.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -32,11 +32,11 @@
             justify-content: flex-end; 
             align-items: center;        
             
-            /* [안드로이드] 하단 여백 */
+            /* [안드로이드 기본 하단 여백] */
             padding-bottom: 120px; 
         }
 
-        /* [iOS] 기존보다 30px 위로 올림 (30px -> 60px) */
+        /* [iOS] 안전 영역 고려 및 위치 조정 */
         body.ios .app-container {
             padding-bottom: calc(100px + env(safe-area-inset-bottom)); 
         }
@@ -51,9 +51,9 @@
 
         .logo-link {
             display: block;
-            width: 200px; /* 슬림한 틀 유지 */
+            width: 200px;
             height: auto;
-            transition: transform 0.1s;
+            transition: transform 0.1s, opacity 0.1s;
         }
 
         .logo-link img {
@@ -74,11 +74,15 @@
     <div class="app-container">
         <div class="button-group">
             <a href="https://bdki.co.kr/" class="logo-link">
-                <img src="https://bdki2020.cafe24.com/app/260416/website.png" alt="BDKI Home">
+                <img src="https://bdki2020.cafe24.com/app/260424/website.png" alt="BDKI Home">
+            </a>
+
+            <a href="https://bdkibuy.co.kr/" class="logo-link">
+                <img src="https://bdki2020.cafe24.com/app/260424/shop.png" alt="BDKI Shop">
             </a>
 
             <a href="https://blog.naver.com/bdki_blog" class="logo-link">
-                <img src="https://bdki2020.cafe24.com/app/260416/blog.png" alt="BDKI Blog">
+                <img src="https://bdki2020.cafe24.com/app/260424/blog.png" alt="BDKI Blog">
             </a>
         </div>
     </div>
@@ -86,6 +90,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            // iOS 디바이스 체크
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 document.body.classList.add('ios');
             } else {
